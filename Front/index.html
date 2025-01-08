@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- [icon] -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <!-- [font:Lato] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <!-- [font: Noto Sans] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <!-- [font:Poppins] -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <!-- ==favicon== -->
+    <link rel="icon" href="images/musicFavicon_1.png" type="image/x-icon">
+    <!-- ==css== -->
+    <link rel="stylesheet" href="css/musicPlayer.css">
+    <!-- ==script== -->
+    <script src="js/musicPlayer.js" defer></script>
+
+    <title>Music Player</title>
+</head>
+
+<body id="bodyArea" class="bodyArea">
+    <div id="layoutWrapper" class="layoutWrapper">
+        <div id="wrap" class="wrap">
+            <section class="headerCont">
+                <article class="headerIcon">
+                    <!-- xi-music-scale  // xi-beats // xi-album-->
+                    <i id="ListBtnTop" class="xi-angle-up ListBtnTop iconSizeA"></i>
+                </article>
+                <section class="titleCont">
+                    <article id="heartBox">
+                        <i id="heartBtn" class="xi-heart-o heartBtn iconSizeA"></i>
+                    </article>
+                    <article class="titleTxt">
+                        <h2 id="musicTitle" class="musicTitle">Music Title</h2>
+                        <p id="artistName" class="artistName">Artist</p>
+                    </article>
+                    <i class="xi-youtube-play iconSizeA linkMovie" id="linkMovie"></i>
+                </section>
+            </section>
+            <!-- //headerCont  -->
+            <article id="photoArea" class="photoArea">
+                <!-- [앨범이미지] -->
+                <!-- ============================== -->
+                <!--Visualizer 추가_(11/17)-->
+                <div id="visualizerContent" class="visualizerContent">
+                    <canvas id="canvas" class="canvas"></canvas>
+                </div>
+                <!-- ============================== -->
+            </article>
+            <!-- //photoArea -->
+            <section class="lyricsArea">
+                <div id="viewLyricsBtn" class="viewLyricsBtn">Lyrics</div>
+                <!-- <article id="lyricsTxt" class="lyricsTxt">
+
+        </article> -->
+            </section>
+            <section class="controlRange">
+                <input id="playRange" class="playRange" type="range" value="0">
+                <article class="timeRange">
+                    <p id="startTime" class="startTime">00:00</p>
+                    <p id="endTime" class="endTime">00:00</p>
+                </article>
+                <!-- [오디오] -->
+                <audio id="audioFile" src="audio/niceToMeetYou.mp3"></audio>
+            </section>
+            <!-- //controlRange -->
+            <section class="AbtnBox btnArea">
+                <i id="backwardBtn" class="xi-step-backward iconSizeA"></i>
+                <article id="playbackB" class="playbackB">
+                    <i id="playBtn" class="playBtn xi-play iconSizeB"></i>
+                    <i id="stopBtn" class="stopBtn xi-pause iconSizeB"></i>
+                </article>
+                <i id="forwardBtn" class="xi-step-forward iconSizeA"></i>
+            </section>
+            <!-- //AbtnBox -->
+            <article class="BbtnBox btnArea">
+                <i id="equalizerBtn" class="xi-equalizer iconSizeA equalizerActiveBtn"></i>
+                <i id="repeatBtn" class="xi-repeat iconSizeA"></i>
+                <i id="shuffleBtn" class="xi-shuffle iconSizeA"></i>
+                <i id="ListBtn" class="xi-bars ListBtn iconSizeA"></i>
+            </article>
+            <!-- //BbtnBox -->
+        </div>
+        <!-- //wrap -->
+
+        <!-- playlistWrapBox -->
+        <div id="playlistWrapBox" class="playlistWrapBox">
+            <section id="playlistHeader" class="playlistHeader">
+                <article class="playlistTitleBox">
+                    <i id="playlistClose" class="xi-close playlistClose"></i>
+                    <h2 class="playPageTxt">Time To Enjoy Music</h2>
+                    <img src="images/musicPlayListIcon.png" class="playlistImg">
+                </article>
+                <article class="playlistToggleBox">
+                    <h3 class="playlistTotal" id="playlistTotal">전체 <span id="playlistCount"
+                            class="playlistTotal playlistCount">
+                            <!-- 음악개수 -->
+                        </span></h3>
+                    <!-- =============================== -->
+                    <!-- 즐겨찾기 토글 추가 (11/19) -->
+                    <div class="playlistToggleContents">
+                        <h2>My Music</h2>
+                        <div class="toggleContainer">
+                            <input type="checkbox" id="toggleInput" class="toggleInput">
+                            <label for="toggleInput" class="toggleLabel">
+                                <span class="toggleText" id="toggleText">OFF</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- =============================== -->
+                </article>
+            </section>
+            <!-- playlistBox -->
+            <section id="playlistBox" class="playlistBox">
+
+            </section>
+            <!-- activePlayMusicBox -->
+            <section id="activePlayMusicBox" class="activePlayMusicBox">
+                <input id="activePlayMusicRange" class="activePlayMusicRange" type="range" value="0">
+                <section>
+                    <!-- playlistBtn -->
+                    <article id="playlistMusicBtn" class="playlistMusicBtn">
+                        <!-- back -->
+                        <i id="playlistBackwardBtn" class="xi-step-backward iconSizeA playlistBtn prevnextBtn"></i>
+                        <!-- play/pause -->
+                        <article id="playlistPlayBackB" class="playlistPlayBackB playlistBtn">
+                            <i id="playlistPlayBtn" class="xi-play iconSizeB playlistPlayBtn"></i>
+                            <i id="playlistPauseBtn" class="xi-pause iconSizeB playlistPauseBtn"></i>
+                        </article>
+                        <!-- forward -->
+                        <i id="playlistForwardBtn" class="xi-step-forward iconSizeA playlistBtn prevnextBtn"></i>
+                        <div id="activePlayMusicImg" class="activePlayMusicImg"></div>
+                    </article>
+                </section>
+            </section>
+        </div>
+        <!-- //playlistWrapBox  -->
+        <section id="lyricsContWrap" class="lyricsContWrap">
+            <!-- 가사_닫기(11/20) -->
+            <div class="hidelyricsDownBtn" id="hidelyricsDownBtn">
+                <i class="xi-angle-down-thin hidelyricsIcon"></i>
+            </div>
+            <article id="lyricsContBox" class="lyricsContBox">
+                <div id="lyricsContTxt" class="lyricsContTxt">
+                    <!-- [가사영역] -->
+                </div>
+            </article>
+        </section>
+
+        <div id="lyricsBoxShadowAreaTop" class="lyricsBoxShadowAreaTop"></div>
+        <div id="lyricsBoxShadowAreaBottom" class="lyricsBoxShadowAreaBottom"></div>
+        <div id="hidelyricsBoxArea" class="hidelyricsBoxArea"></div>
+
+    </div>
+    <!-- //layoutWrapper -->
+</body>
+
+</html>
